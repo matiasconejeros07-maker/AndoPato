@@ -107,7 +107,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);font-family:'Barlow',
 .ob-pct-sum{font-size:13px;font-weight:700;padding:8px 12px;border-radius:10px;margin-bottom:16px}
 .ob-pct-ok{background:var(--green-bg);color:#007A5A}
 .ob-pct-bad{background:var(--yellow-bg);color:#A07000}
-.ob-goal-options{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
+.ob-goal-options{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
 .ob-goal-opt{padding:14px 12px;border-radius:var(--r2);border:2px solid var(--border2);background:var(--bg2);cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:6px;transition:all .15s;text-align:center}
 .ob-goal-opt.sel{border-color:var(--accent);background:var(--accent-l)}
 .ob-goal-opt .go-emoji{font-size:28px}
@@ -117,8 +117,13 @@ html,body{height:100%;overflow:hidden;background:var(--bg);font-family:'Barlow',
 .ob-btn:active{transform:scale(.98);opacity:.9}
 .ob-btn-outline{width:100%;padding:14px;border-radius:var(--r2);background:transparent;border:2px solid var(--border2);color:var(--txt);font-family:'Barlow',sans-serif;font-size:15px;font-weight:700;cursor:pointer;margin-top:8px}
 
+/* Emoji + custom input row for onboarding goal */
+.ob-emoji-input-row{display:flex;gap:8px;margin-bottom:8px}
+.ob-emoji-pick{width:58px;background:var(--bg2);border:2px solid var(--border2);border-radius:var(--r2);padding:12px 6px;font-size:22px;text-align:center;outline:none;-webkit-appearance:none;cursor:pointer}
+.ob-emoji-pick:focus{border-color:var(--accent)}
+
 /* HEADER */
-.app-header{padding:calc(var(--safe-top)+12px) 20px 12px;background:var(--bg2);display:flex;align-items:center;justify-content:space-between;border-bottom:1.5px solid var(--border);flex-shrink:0;z-index:10}
+.app-header{padding:calc(var(--safe-top)+10px) 18px 10px;background:var(--bg2);display:flex;align-items:center;justify-content:space-between;border-bottom:1.5px solid var(--border);flex-shrink:0;z-index:10}
 .logo{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:26px;letter-spacing:-0.5px;color:var(--txt);display:flex;align-items:center;gap:6px}
 .logo span{color:var(--accent)}
 .header-actions{display:flex;gap:8px}
@@ -127,14 +132,14 @@ html,body{height:100%;overflow:hidden;background:var(--bg);font-family:'Barlow',
 
 /* PAGES */
 .pages{flex:1;overflow:hidden;position:relative}
-.page{position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;padding:0 0 calc(var(--nav-h)+var(--safe-bottom)+24px);opacity:0;transform:translateY(8px);transition:opacity .22s ease,transform .22s ease;pointer-events:none}
+.page{position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;padding:0 0 calc(var(--nav-h)+var(--safe-bottom)+20px);opacity:0;transform:translateY(8px);transition:opacity .22s ease,transform .22s ease;pointer-events:none}
 .page.active{opacity:1;transform:translateY(0);pointer-events:auto}
 .page::-webkit-scrollbar{display:none}
 
 /* NAV */
 .bottom-nav{height:calc(var(--nav-h)+var(--safe-bottom));padding-bottom:var(--safe-bottom);background:var(--bg2);border-top:1.5px solid var(--border);display:flex;align-items:stretch;flex-shrink:0;z-index:10}
 .nav-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer;color:var(--txt3);transition:color .18s;position:relative;padding-top:4px}
-.nav-icon{font-size:23px;transition:transform .18s}
+.nav-icon{font-size:22px;transition:transform .18s}
 .nav-label{font-size:10px;font-weight:700;letter-spacing:.2px}
 .nav-item.active .nav-icon{transform:scale(1.12)}
 .nav-item.active{color:var(--accent)}
@@ -142,107 +147,143 @@ html,body{height:100%;overflow:hidden;background:var(--bg);font-family:'Barlow',
 .nav-item.active .nav-pill{opacity:1}
 .nav-dot{position:absolute;top:7px;right:calc(50% - 20px);width:7px;height:7px;border-radius:50%;background:var(--red);border:2px solid var(--bg2)}
 
-/* FAB */
-.fab{position:fixed;bottom:calc(var(--nav-h)+var(--safe-bottom)+14px);right:18px;width:58px;height:58px;border-radius:50%;background:linear-gradient(145deg,#FF6B35,#E8003D);display:flex;align-items:center;justify-content:center;font-size:28px;color:#fff;cursor:pointer;box-shadow:0 8px 28px rgba(255,107,53,.5);transition:transform .15s,box-shadow .15s;z-index:20}
+/* FAB — fixed bottom-right, above nav */
+.fab{position:fixed;bottom:88px;right:20px;width:56px;height:56px;border-radius:50%;background:linear-gradient(145deg,#FF6B35,#E8003D);display:flex;align-items:center;justify-content:center;font-size:26px;color:#fff;cursor:pointer;box-shadow:0 6px 24px rgba(255,69,96,.45);transition:transform .15s,box-shadow .15s;z-index:50}
 .fab:active{transform:scale(.91)}
 
 /* HERO */
-.salary-hero{margin:14px 16px;background:linear-gradient(135deg,#6C3FE8 0%,#A855F7 55%,#EC4899 100%);border-radius:var(--r3);padding:22px 20px 18px;position:relative;overflow:hidden;box-shadow:0 12px 40px rgba(108,63,232,.35)}
-.salary-hero::before{content:'🦆';position:absolute;bottom:-10px;right:14px;font-size:72px;opacity:.18;transform:rotate(-15deg);pointer-events:none;line-height:1}
-.hero-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px}
-.hero-month{font-size:12px;color:rgba(255,255,255,.65);text-transform:uppercase;letter-spacing:1.5px;font-weight:700}
-.hero-hints{display:flex;gap:6px}
-.hero-edit-hint{font-size:11px;color:rgba(255,255,255,.5);background:rgba(255,255,255,.12);border-radius:12px;padding:4px 9px;border:1px solid rgba(255,255,255,.18);cursor:pointer}
-.hero-amount{font-family:'JetBrains Mono',monospace;font-size:44px;font-weight:800;color:#fff;letter-spacing:-2px;line-height:1;margin-bottom:4px}
-.hero-sub{font-size:12px;color:rgba(255,255,255,.55);margin-bottom:14px}
-.hero-badges{display:flex;gap:7px;flex-wrap:wrap}
-.hero-badge{background:rgba(255,255,255,.15);border-radius:20px;padding:5px 10px;font-size:11px;color:#fff;font-weight:700;border:1px solid rgba(255,255,255,.2);display:flex;align-items:center;gap:4px}
+.salary-hero{margin:12px 14px 0;background:linear-gradient(135deg,#6C3FE8 0%,#A855F7 55%,#EC4899 100%);border-radius:var(--r3);padding:18px 18px 16px;position:relative;overflow:hidden;box-shadow:0 10px 32px rgba(108,63,232,.30)}
+.salary-hero::before{content:'🦆';position:absolute;bottom:-8px;right:12px;font-size:66px;opacity:.18;transform:rotate(-15deg);pointer-events:none;line-height:1}
+.hero-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px}
+.hero-month{font-size:11px;color:rgba(255,255,255,.65);text-transform:uppercase;letter-spacing:1.5px;font-weight:700}
+.hero-hints{display:flex;gap:6px;flex-wrap:wrap}
+.hero-edit-hint{font-size:11px;color:rgba(255,255,255,.5);background:rgba(255,255,255,.12);border-radius:12px;padding:4px 9px;border:1px solid rgba(255,255,255,.18);cursor:pointer;white-space:nowrap}
+.hero-amount{font-family:'JetBrains Mono',monospace;font-size:38px;font-weight:800;color:#fff;letter-spacing:-2px;line-height:1;margin-bottom:3px}
+.hero-sub{font-size:12px;color:rgba(255,255,255,.55);margin-bottom:12px}
+.hero-badges{display:flex;gap:6px;flex-wrap:wrap}
+.hero-badge{background:rgba(255,255,255,.15);border-radius:20px;padding:4px 9px;font-size:11px;color:#fff;font-weight:700;border:1px solid rgba(255,255,255,.2);display:flex;align-items:center;gap:4px}
 
 /* INCOME STRIP */
-.income-strip{margin:0 16px 0;display:flex;gap:8px;overflow-x:auto;padding-bottom:2px}
+.income-strip{margin:0 14px 0;display:flex;gap:8px;overflow-x:auto;padding-bottom:2px}
 .income-strip::-webkit-scrollbar{display:none}
 .income-chip{flex-shrink:0;background:var(--green-bg);border:1.5px solid rgba(0,200,150,.25);border-radius:20px;padding:6px 12px;font-size:12px;font-weight:700;color:#007A5A;display:flex;align-items:center;gap:5px}
 .dark .income-chip{color:var(--green)}
 
 /* GOAL CARD */
-.goal-card{margin:14px 16px 0;background:var(--bg2);border:1.5px solid var(--border);border-radius:var(--r2);padding:16px 18px;position:relative;overflow:hidden}
+.goal-card{margin:12px 14px 0;background:var(--bg2);border:1.5px solid var(--border);border-radius:var(--r2);padding:14px 16px;position:relative;overflow:hidden;cursor:pointer;transition:transform .12s}
+.goal-card:active{transform:scale(.99)}
 .goal-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),#EC4899)}
-.goal-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.goal-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
 .goal-title{font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:900;display:flex;align-items:center;gap:7px}
 .goal-pct-badge{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:800;padding:4px 10px;border-radius:20px;background:var(--accent-l);color:var(--accent)}
-.goal-bar-wrap{height:10px;background:var(--bg3);border-radius:5px;overflow:hidden;margin-bottom:10px}
-.goal-bar-fill{height:100%;border-radius:5px;background:linear-gradient(90deg,var(--accent),#EC4899);transition:width .8s cubic-bezier(.4,0,.2,1)}
+.goal-bar-wrap{height:8px;background:var(--bg3);border-radius:4px;overflow:hidden;margin-bottom:8px}
+.goal-bar-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--accent),#EC4899);transition:width .8s cubic-bezier(.4,0,.2,1)}
 .goal-amounts{display:flex;justify-content:space-between;font-size:12px;color:var(--txt3);font-weight:700}
 .goal-amounts span:first-child{color:var(--accent);font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:800}
-.goal-celebrate{background:linear-gradient(135deg,#00C896,#00A67E);border-radius:var(--r);padding:12px 14px;display:flex;align-items:center;gap:10px;margin-top:10px}
+.goal-celebrate{background:linear-gradient(135deg,#00C896,#00A67E);border-radius:var(--r);padding:11px 13px;display:flex;align-items:center;gap:10px;margin-top:10px}
 .goal-celebrate p{font-size:13px;font-weight:800;color:#fff;line-height:1.4}
+.goal-tap-hint{font-size:11px;color:var(--txt3);font-weight:700;margin-top:7px;text-align:center}
+
+/* MILESTONE BANNER */
+.milestone-banner{position:fixed;top:calc(var(--safe-top)+60px);left:14px;right:14px;z-index:500;background:linear-gradient(135deg,var(--accent),#EC4899);border-radius:var(--r2);padding:14px 18px;display:flex;align-items:center;gap:12px;box-shadow:0 8px 32px rgba(108,63,232,.4);transform:translateY(-120px);opacity:0;transition:transform .4s cubic-bezier(.34,1.56,.64,1),opacity .4s ease;pointer-events:none}
+.milestone-banner.show{transform:translateY(0);opacity:1;pointer-events:auto}
+.mb-emoji{font-size:32px;animation:emojiBounce 0.6s ease infinite alternate}
+.mb-text{flex:1;color:#fff}
+.mb-title{font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:900;margin-bottom:2px}
+.mb-sub{font-size:12px;opacity:.85;font-weight:700}
+.mb-close{font-size:18px;color:rgba(255,255,255,.7);cursor:pointer;padding:4px}
+
+/* GOAL DETAIL SHEET */
+.goal-detail-header{text-align:center;padding:20px 20px 16px}
+.gdh-emoji{font-size:56px;animation:emojiBounce .8s ease infinite alternate}
+.gdh-name{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;margin-top:8px}
+.gdh-pct{font-family:'JetBrains Mono',monospace;font-size:42px;font-weight:800;color:var(--accent);letter-spacing:-2px;margin:4px 0}
+.gdh-bar-wrap{height:14px;background:var(--bg3);border-radius:7px;overflow:hidden;margin:12px 20px}
+.gdh-bar-fill{height:100%;border-radius:7px;background:linear-gradient(90deg,var(--accent),#EC4899);transition:width 1s cubic-bezier(.4,0,.2,1)}
+.gdh-amounts{display:flex;justify-content:space-between;padding:0 20px;font-size:13px;font-weight:700;margin-bottom:16px}
+.gdh-saved{color:var(--accent);font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:800}
+.gdh-remaining{color:var(--txt3)}
+.goal-monthly-list{padding:0 20px}
+.gml-title{font-size:11px;color:var(--txt3);text-transform:uppercase;letter-spacing:.7px;font-weight:700;margin-bottom:8px}
+.gml-item{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:var(--bg3);border-radius:var(--r);margin-bottom:6px}
+.gml-month{font-size:13px;font-weight:800;color:var(--txt);display:flex;align-items:center;gap:7px}
+.gml-amount{font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:800;color:var(--green)}
+.gml-empty{font-size:13px;color:var(--txt3);font-weight:700;text-align:center;padding:16px}
+.goal-milestone-list{padding:0 20px 8px}
+.milestone-item{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:var(--r);margin-bottom:6px}
+.mi-reached{background:linear-gradient(135deg,rgba(108,63,232,.12),rgba(168,85,247,.08));border:1.5px solid rgba(108,63,232,.2)}
+.mi-pending{background:var(--bg3);opacity:.6}
+.mi-emoji{font-size:22px}
+.mi-label{font-size:13px;font-weight:800;color:var(--txt);flex:1}
+.mi-badge-reached{font-size:11px;font-weight:800;color:var(--accent);background:var(--accent-l);border-radius:20px;padding:3px 9px}
+.mi-badge-pending{font-size:11px;font-weight:700;color:var(--txt3)}
 
 /* BUCKET CHIPS */
-.buckets-scroll{display:flex;gap:10px;padding:0 16px;overflow-x:auto;scrollbar-width:none}
+.buckets-scroll{display:flex;gap:10px;padding:0 14px;overflow-x:auto;scrollbar-width:none}
 .buckets-scroll::-webkit-scrollbar{display:none}
-.bucket-chip{flex-shrink:0;min-width:152px;background:var(--bg2);border:1.5px solid var(--border);border-radius:var(--r2);padding:14px 15px;cursor:pointer;transition:transform .14s}
+.bucket-chip{flex-shrink:0;min-width:148px;background:var(--bg2);border:1.5px solid var(--border);border-radius:var(--r2);padding:12px 14px;cursor:pointer;transition:transform .14s}
 .bucket-chip:active{transform:scale(.96)}
-.bc-top{display:flex;align-items:center;gap:9px;margin-bottom:11px}
-.bc-icon{width:36px;height:36px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.bc-top{display:flex;align-items:center;gap:9px;margin-bottom:10px}
+.bc-icon{width:34px;height:34px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0}
 .bc-name{font-size:13px;font-weight:900;color:var(--txt)}
 .bc-pct{font-size:11px;color:var(--txt3);font-weight:700}
-.bc-spent{font-family:'JetBrains Mono',monospace;font-size:19px;font-weight:800;margin-bottom:1px;letter-spacing:-0.5px}
+.bc-spent{font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:800;margin-bottom:1px;letter-spacing:-0.5px}
 .bc-of{font-size:11px;color:var(--txt3);font-weight:700}
-.bc-bar{height:4px;background:var(--bg3);border-radius:2px;overflow:hidden;margin-top:9px}
+.bc-bar{height:4px;background:var(--bg3);border-radius:2px;overflow:hidden;margin-top:8px}
 .bc-fill{height:100%;border-radius:2px;transition:width .5s cubic-bezier(.4,0,.2,1)}
 .bc-left{font-size:10px;color:var(--txt3);margin-top:5px;font-weight:700}
 
 /* SECTION HEADERS */
-.sec-hdr{display:flex;align-items:center;justify-content:space-between;padding:0 16px;margin:20px 0 10px}
-.sec-hdr h2{font-family:'Barlow Condensed',sans-serif;font-size:19px;font-weight:900;color:var(--txt);letter-spacing:.2px;display:flex;align-items:center;gap:6px}
+.sec-hdr{display:flex;align-items:center;justify-content:space-between;padding:0 14px;margin:18px 0 8px}
+.sec-hdr h2{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:900;color:var(--txt);letter-spacing:.2px;display:flex;align-items:center;gap:6px}
 .sec-hdr a{font-size:13px;color:var(--accent);cursor:pointer;font-weight:700}
 
 /* EXPENSE ITEMS */
-.exp-list{background:var(--bg2);border:1.5px solid var(--border);border-radius:var(--r2);overflow:hidden;margin:0 16px}
-.expense-item{display:flex;align-items:center;justify-content:space-between;padding:13px 16px;border-bottom:1px solid var(--border);transition:background .12s}
+.exp-list{background:var(--bg2);border:1.5px solid var(--border);border-radius:var(--r2);overflow:hidden;margin:0 14px}
+.expense-item{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid var(--border);transition:background .12s}
 .expense-item:last-child{border-bottom:none}
 .ei-left{display:flex;align-items:center;gap:11px}
-.ei-icon{width:40px;height:40px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.ei-icon{width:38px;height:38px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0}
 .ei-title{font-size:14px;font-weight:800;color:var(--txt)}
-.ei-sub{font-size:12px;color:var(--txt3);margin-top:1px;font-weight:600}
-.ei-amount{font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:700;color:var(--txt)}
+.ei-sub{font-size:11px;color:var(--txt3);margin-top:1px;font-weight:600}
+.ei-amount{font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:700;color:var(--txt)}
 
 /* ALERTS */
-.alert-item{display:flex;align-items:flex-start;gap:10px;padding:11px 14px;border-radius:var(--r);margin:0 16px 8px;font-size:13px;font-weight:700;animation:alertIn .3s ease both,alertOut .4s ease 4s both}
+.alert-item{display:flex;align-items:flex-start;gap:10px;padding:10px 13px;border-radius:var(--r);margin:0 14px 8px;font-size:13px;font-weight:700;animation:alertIn .3s ease both,alertOut .4s ease 4s both}
 .alert-warn{background:var(--yellow-bg);color:#A07000;border:1.5px solid rgba(255,184,0,.3)}
 .dark .alert-warn{color:var(--yellow)}
 .alert-danger{background:var(--red-bg);color:#C0002A;border:1.5px solid rgba(255,69,96,.25)}
 .dark .alert-danger{color:var(--red)}
 
 /* RING */
-.ring-container{display:flex;justify-content:center;padding:18px 16px 8px}
-.ring-wrap{position:relative;width:165px;height:165px}
+.ring-container{display:flex;justify-content:center;padding:16px 14px 6px}
+.ring-wrap{position:relative;width:155px;height:155px}
 .ring-wrap svg{transform:rotate(-90deg)}
 .ring-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.rc-pct{font-family:'JetBrains Mono',monospace;font-size:34px;font-weight:800;color:var(--txt);letter-spacing:-1px;transition:color .5s}
+.rc-pct{font-family:'JetBrains Mono',monospace;font-size:30px;font-weight:800;color:var(--txt);letter-spacing:-1px;transition:color .5s}
 .rc-label{font-size:10px;color:var(--txt3);margin-top:1px;font-weight:700}
-.rc-spent{font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:800;margin-top:5px}
+.rc-spent{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:800;margin-top:4px}
 .rc-spent-label{font-size:10px;color:var(--txt3);font-weight:700}
 
 /* BAR CHART */
-.bar-row{display:flex;align-items:center;gap:10px;margin-bottom:11px}
+.bar-row{display:flex;align-items:center;gap:10px;margin-bottom:10px}
 .bar-row:last-child{margin-bottom:0}
-.br-label{font-size:12px;color:var(--txt2);width:90px;flex-shrink:0;text-align:right;font-weight:700;display:flex;align-items:center;justify-content:flex-end;gap:5px}
-.br-bar{flex:1;height:9px;background:var(--bg3);border-radius:5px;overflow:hidden}
-.br-fill{height:100%;border-radius:5px;transition:width .65s cubic-bezier(.4,0,.2,1)}
-.br-val{font-size:11px;color:var(--txt3);width:54px;flex-shrink:0;text-align:right;font-family:'JetBrains Mono',monospace;font-weight:700}
+.br-label{font-size:12px;color:var(--txt2);width:86px;flex-shrink:0;text-align:right;font-weight:700;display:flex;align-items:center;justify-content:flex-end;gap:5px}
+.br-bar{flex:1;height:8px;background:var(--bg3);border-radius:4px;overflow:hidden}
+.br-fill{height:100%;border-radius:4px;transition:width .65s cubic-bezier(.4,0,.2,1)}
+.br-val{font-size:11px;color:var(--txt3);width:52px;flex-shrink:0;text-align:right;font-family:'JetBrains Mono',monospace;font-weight:700}
 
 /* SAVINGS GRID */
-.savings-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 16px}
-.savings-stat{background:var(--bg2);border:1.5px solid var(--border);border-radius:var(--r2);padding:14px 15px}
-.ss-icon{font-size:22px;margin-bottom:6px}
-.ss-label{font-size:11px;color:var(--txt3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px;font-weight:700}
-.ss-val{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:800;color:var(--txt);letter-spacing:-0.5px}
+.savings-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 14px}
+.savings-stat{background:var(--bg2);border:1.5px solid var(--border);border-radius:var(--r2);padding:13px 14px}
+.ss-icon{font-size:20px;margin-bottom:5px}
+.ss-label{font-size:11px;color:var(--txt3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;font-weight:700}
+.ss-val{font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:800;color:var(--txt);letter-spacing:-0.5px}
 .ss-sub{font-size:11px;color:var(--txt3);margin-top:3px;font-weight:600}
 
 /* HISTORY */
-.history-month-card{margin:0 16px 12px}
-.hm-header{display:flex;justify-content:space-between;align-items:center;padding:13px 16px;background:var(--bg2);border-radius:var(--r2) var(--r2) 0 0;border:1.5px solid var(--border);border-bottom:none}
+.history-month-card{margin:0 14px 10px}
+.hm-header{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;background:var(--bg2);border-radius:var(--r2) var(--r2) 0 0;border:1.5px solid var(--border);border-bottom:none}
 .hm-name{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:900;display:flex;align-items:center;gap:6px}
 .hm-badge{font-size:11px;padding:4px 10px;border-radius:20px;font-weight:700}
 .hm-green{background:var(--green-bg);color:#007A5A}
@@ -250,7 +291,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);font-family:'Barlow',
 .hm-red{background:var(--red-bg);color:#A0001A}
 .dark .hm-red{color:var(--red)}
 .hm-body{background:var(--bg2);border-radius:0 0 var(--r2) var(--r2);border:1.5px solid var(--border);border-top:1px solid var(--border);padding:0 0 4px}
-.hm-row{display:flex;justify-content:space-between;align-items:center;padding:9px 16px;border-bottom:1px solid var(--border)}
+.hm-row{display:flex;justify-content:space-between;align-items:center;padding:9px 14px;border-bottom:1px solid var(--border)}
 .hm-row:last-child{border-bottom:none}
 .hm-rl{font-size:13px;color:var(--txt2);display:flex;align-items:center;gap:6px;font-weight:700}
 .hm-rv{font-size:13px;font-weight:700;color:var(--txt);font-family:'JetBrains Mono',monospace}
@@ -272,23 +313,23 @@ html,body{height:100%;overflow:hidden;background:var(--bg);font-family:'Barlow',
 .form-group{margin-bottom:14px}
 .form-row-2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
 .cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.cat-option{padding:11px 12px;border-radius:var(--r);border:1.5px solid var(--border);background:var(--bg3);cursor:pointer;display:flex;align-items:center;gap:8px;transition:all .14s}
-.co-icon{width:30px;height:30px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px}
+.cat-option{padding:10px 11px;border-radius:var(--r);border:1.5px solid var(--border);background:var(--bg3);cursor:pointer;display:flex;align-items:center;gap:8px;transition:all .14s}
+.co-icon{width:28px;height:28px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:16px}
 .co-name{font-size:13px;font-weight:800;color:var(--txt)}
 .co-sub{font-size:10px;color:var(--txt3);font-weight:700}
 .subcat-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px}
 .subcat-option{padding:9px 11px;border-radius:var(--r);border:1.5px solid var(--border);background:var(--bg3);cursor:pointer;font-size:13px;font-weight:700;color:var(--txt);transition:all .14s;display:flex;align-items:center;gap:7px}
-.btn-full{width:100%;padding:15px;border-radius:var(--r2);background:linear-gradient(135deg,var(--accent),#A855F7);border:none;color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:900;cursor:pointer;letter-spacing:.4px;transition:transform .14s,opacity .14s;display:flex;align-items:center;justify-content:center;gap:8px}
+.btn-full{width:100%;padding:14px;border-radius:var(--r2);background:linear-gradient(135deg,var(--accent),#A855F7);border:none;color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:900;cursor:pointer;letter-spacing:.4px;transition:transform .14s,opacity .14s;display:flex;align-items:center;justify-content:center;gap:8px}
 .btn-full:active{transform:scale(.98);opacity:.9}
 .btn-outline{width:100%;padding:14px;border-radius:var(--r2);background:transparent;border:1.5px solid var(--border2);color:var(--txt);font-family:'Barlow',sans-serif;font-size:15px;font-weight:700;cursor:pointer;transition:background .14s;display:flex;align-items:center;justify-content:center;gap:7px}
 .btn-sm{padding:7px 14px;border-radius:20px;background:var(--accent-l);border:1.5px solid var(--border2);color:var(--accent);font-size:12px;font-weight:800;cursor:pointer;font-family:'Barlow',sans-serif}
 .btn-danger{border-color:rgba(255,69,96,.35);color:var(--red)}
 
 /* SETTINGS */
-.settings-group{margin:0 16px 12px}
+.settings-group{margin:0 14px 12px}
 .sg-header{font-size:11px;color:var(--txt3);text-transform:uppercase;letter-spacing:.7px;padding:0 4px;margin-bottom:6px;font-weight:700}
 .sg-body{background:var(--bg2);border:1.5px solid var(--border);border-radius:var(--r2)}
-.sg-row{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid var(--border)}
+.sg-row{display:flex;align-items:center;justify-content:space-between;padding:13px 14px;border-bottom:1px solid var(--border)}
 .sg-row:last-child{border-bottom:none}
 .sg-title{font-size:14px;font-weight:800;color:var(--txt);display:flex;align-items:center;gap:7px}
 .sg-sub{font-size:12px;color:var(--txt3);margin-top:2px;font-weight:600}
@@ -298,7 +339,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);font-family:'Barlow',
 .pct-warn{font-size:12px;padding:8px 4px;font-weight:700}
 
 /* SUBCAT DETAIL */
-.subcat-row{display:flex;align-items:center;justify-content:space-between;padding:11px 16px;border-bottom:1px solid var(--border)}
+.subcat-row{display:flex;align-items:center;justify-content:space-between;padding:11px 14px;border-bottom:1px solid var(--border)}
 .subcat-row:last-child{border-bottom:none}
 .subcat-left{display:flex;align-items:center;gap:10px}
 .subcat-emoji{font-size:20px;width:32px;text-align:center}
@@ -311,7 +352,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);font-family:'Barlow',
 .subcat-fill{height:100%;border-radius:2px;transition:width .5s ease}
 
 /* DONUT */
-.donut-wrap{display:flex;align-items:center;gap:16px;padding:16px}
+.donut-wrap{display:flex;align-items:center;gap:16px;padding:14px}
 .donut-svg{flex-shrink:0}
 .donut-legend{flex:1;display:flex;flex-direction:column;gap:7px}
 .legend-row{display:flex;align-items:center;gap:7px;font-size:12px;font-weight:700;color:var(--txt2)}
@@ -319,12 +360,12 @@ html,body{height:100%;overflow:hidden;background:var(--bg);font-family:'Barlow',
 .legend-val{margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--txt)}
 
 /* TOAST */
-.toast{position:fixed;bottom:calc(var(--nav-h)+var(--safe-bottom)+18px);left:50%;transform:translateX(-50%) translateY(18px);background:var(--txt);color:var(--bg2);padding:10px 20px;border-radius:24px;font-size:13px;font-weight:800;z-index:200;opacity:0;transition:opacity .2s,transform .2s;white-space:nowrap;pointer-events:none}
+.toast{position:fixed;bottom:calc(var(--nav-h)+var(--safe-bottom)+20px);left:50%;transform:translateX(-50%) translateY(18px);background:var(--txt);color:var(--bg2);padding:10px 20px;border-radius:24px;font-size:13px;font-weight:800;z-index:300;opacity:0;transition:opacity .2s,transform .2s;white-space:nowrap;pointer-events:none;max-width:calc(100vw - 32px);text-align:center}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
 /* EMPTY */
-.empty-state{text-align:center;padding:44px 20px;color:var(--txt3)}
-.empty-state .es-emoji{font-size:52px;display:block;margin-bottom:12px}
+.empty-state{text-align:center;padding:40px 20px;color:var(--txt3)}
+.empty-state .es-emoji{font-size:48px;display:block;margin-bottom:10px}
 .empty-state p{font-size:14px;font-weight:700}
 
 /* ANIMATIONS */
@@ -334,6 +375,8 @@ html,body{height:100%;overflow:hidden;background:var(--bg);font-family:'Barlow',
 @keyframes alertIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
 @keyframes alertOut{from{opacity:1;transform:translateY(0)}to{opacity:0;transform:translateY(-8px)}}
 @keyframes celebrate{0%{transform:scale(1)}50%{transform:scale(1.04)}100%{transform:scale(1)}}
+@keyframes emojiBounce{from{transform:translateY(0) scale(1)}to{transform:translateY(-8px) scale(1.08)}}
+@keyframes milestoneIn{from{transform:scale(.7) rotate(-12deg);opacity:0}to{transform:scale(1) rotate(0deg);opacity:1}}
 .anim{animation:fadeUp .28s ease both}
 .anim:nth-child(1){animation-delay:.04s}.anim:nth-child(2){animation-delay:.09s}
 .anim:nth-child(3){animation-delay:.14s}.anim:nth-child(4){animation-delay:.19s}
@@ -348,6 +391,16 @@ html,body{height:100%;overflow:hidden;background:var(--bg);font-family:'Barlow',
   <div class="splash-name">Ando<span>Pato</span></div>
   <div class="splash-sub">Tu presupuesto inteligente</div>
   <div class="splash-dots"><div class="splash-dot"></div><div class="splash-dot"></div><div class="splash-dot"></div></div>
+</div>
+
+<!-- MILESTONE BANNER -->
+<div class="milestone-banner" id="milestone-banner">
+  <div class="mb-emoji" id="mb-emoji">🎉</div>
+  <div class="mb-text">
+    <div class="mb-title" id="mb-title">¡Increíble progreso!</div>
+    <div class="mb-sub" id="mb-sub">Sigues avanzando hacia tu meta</div>
+  </div>
+  <div class="mb-close" onclick="closeMilestoneBanner()">✕</div>
 </div>
 
 <!-- ONBOARDING -->
@@ -382,20 +435,24 @@ html,body{height:100%;overflow:hidden;background:var(--bg);font-family:'Barlow',
       <div class="ob-pct-row"><label>🛡️ Emergencias</label><input class="ob-pct-inp" id="ob-emg" type="number" value="10" min="0" max="100"/><span style="font-size:16px;font-weight:800;color:var(--txt3)">%</span></div>
       <div class="ob-pct-sum" id="ob-pct-sum">Total: 100% ✓</div>
     </div>
-    <!-- Step 4: Objetivo -->
+    <!-- Step 4: Objetivo con emoji personalizado -->
     <div class="ob-step" id="ob-step-3">
       <div class="ob-emoji">🌟</div>
       <div class="ob-q">¿Cuál es tu objetivo principal?</div>
-      <div class="ob-hint">Queremos ayudarte a llegar a tu meta. Elige una o escribe la tuya.</div>
+      <div class="ob-hint">Elige una opción o escribe la tuya con tu propio emoji.</div>
       <div class="ob-goal-options">
-        <div class="ob-goal-opt" data-goal="🚗 Comprar un auto"><div class="go-emoji">🚗</div><div class="go-name">Comprar un Auto</div></div>
-        <div class="ob-goal-opt" data-goal="🏠 Casa propia"><div class="go-emoji">🏠</div><div class="go-name">Casa Propia</div></div>
-        <div class="ob-goal-opt" data-goal="✈️ Viaje soñado"><div class="go-emoji">✈️</div><div class="go-name">Viaje Soñado</div></div>
-        <div class="ob-goal-opt" data-goal="📚 Educación"><div class="go-emoji">📚</div><div class="go-name">Educación</div></div>
-        <div class="ob-goal-opt" data-goal="💻 Emprender"><div class="go-emoji">💻</div><div class="go-name">Emprender</div></div>
-        <div class="ob-goal-opt" data-goal="🏖️ Libertad financiera"><div class="go-emoji">🏖️</div><div class="go-name">Libertad Financiera</div></div>
+        <div class="ob-goal-opt" data-goal="🚗 Comprar un auto" data-emoji="🚗"><div class="go-emoji">🚗</div><div class="go-name">Comprar un Auto</div></div>
+        <div class="ob-goal-opt" data-goal="🏠 Casa propia" data-emoji="🏠"><div class="go-emoji">🏠</div><div class="go-name">Casa Propia</div></div>
+        <div class="ob-goal-opt" data-goal="✈️ Viaje soñado" data-emoji="✈️"><div class="go-emoji">✈️</div><div class="go-name">Viaje Soñado</div></div>
+        <div class="ob-goal-opt" data-goal="📚 Educación" data-emoji="📚"><div class="go-emoji">📚</div><div class="go-name">Educación</div></div>
+        <div class="ob-goal-opt" data-goal="💻 Emprender" data-emoji="💻"><div class="go-emoji">💻</div><div class="go-name">Emprender</div></div>
+        <div class="ob-goal-opt" data-goal="🏖️ Libertad financiera" data-emoji="🏖️"><div class="go-emoji">🏖️</div><div class="go-name">Libertad Financiera</div></div>
       </div>
-      <input class="ob-input" id="ob-goal-custom" placeholder="O escribe tu objetivo propio..." autocomplete="off"/>
+      <div style="font-size:12px;color:var(--txt3);font-weight:700;margin-bottom:8px">O escribe tu propio objetivo:</div>
+      <div class="ob-emoji-input-row">
+        <input class="ob-emoji-pick" id="ob-goal-emoji" placeholder="🎯" maxlength="4" autocomplete="off"/>
+        <input class="ob-input" id="ob-goal-custom" placeholder="Nombre de tu objetivo..." autocomplete="off" style="margin-bottom:0;flex:1"/>
+      </div>
     </div>
     <!-- Step 5: Monto objetivo -->
     <div class="ob-step" id="ob-step-4">
@@ -431,7 +488,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);font-family:'Barlow',
           <div class="hero-month" id="hero-month">cargando...</div>
           <div class="hero-hints">
             <div class="hero-edit-hint" onclick="openSheet('sheet-income');event.stopPropagation()">💵 + ingreso</div>
-            <div class="hero-edit-hint">✏️ editar</div>
+            <div class="hero-edit-hint" onclick="openSheet('sheet-salary');event.stopPropagation()">✏️ editar</div>
           </div>
         </div>
         <div class="hero-amount" id="hero-salary">$0</div>
@@ -447,10 +504,10 @@ html,body{height:100%;overflow:hidden;background:var(--bg);font-family:'Barlow',
       <div class="buckets-scroll" id="buckets-scroll"></div>
       <div class="ring-container">
         <div class="ring-wrap">
-          <svg width="165" height="165" viewBox="0 0 165 165">
-            <circle cx="82.5" cy="82.5" r="68" fill="none" stroke-width="14" style="stroke:var(--bg3)"/>
-            <circle cx="82.5" cy="82.5" r="68" fill="none" stroke-width="14" stroke-linecap="round"
-              id="ring-fill" style="stroke:var(--accent);stroke-dasharray:427.26;stroke-dashoffset:427.26;transition:stroke-dashoffset .7s cubic-bezier(.4,0,.2,1),stroke .5s"/>
+          <svg width="155" height="155" viewBox="0 0 155 155">
+            <circle cx="77.5" cy="77.5" r="63" fill="none" stroke-width="13" style="stroke:var(--bg3)"/>
+            <circle cx="77.5" cy="77.5" r="63" fill="none" stroke-width="13" stroke-linecap="round"
+              id="ring-fill" style="stroke:var(--accent);stroke-dasharray:395.84;stroke-dashoffset:395.84;transition:stroke-dashoffset .7s cubic-bezier(.4,0,.2,1),stroke .5s"/>
           </svg>
           <div class="ring-center">
             <div class="rc-pct" id="ring-pct">0%</div>
@@ -484,11 +541,11 @@ html,body{height:100%;overflow:hidden;background:var(--bg);font-family:'Barlow',
     <!-- STATS -->
     <div class="page" id="page-stats">
       <div class="sec-hdr" style="margin-top:16px"><h2>📊 Uso del mes</h2></div>
-      <div style="background:var(--bg2);border:1.5px solid var(--border);border-radius:var(--r2);margin:0 16px;padding:16px 14px" id="stats-bars"></div>
+      <div style="background:var(--bg2);border:1.5px solid var(--border);border-radius:var(--r2);margin:0 14px;padding:16px 14px" id="stats-bars"></div>
       <div class="sec-hdr" style="margin-top:20px"><h2>📈 Por categoría</h2></div>
       <div id="stats-cats"></div>
       <div class="sec-hdr" style="margin-top:20px"><h2>🗓️ Evolución</h2></div>
-      <div style="background:var(--bg2);border:1.5px solid var(--border);border-radius:var(--r2);margin:0 16px;padding:16px 14px" id="stats-monthly"></div>
+      <div style="background:var(--bg2);border:1.5px solid var(--border);border-radius:var(--r2);margin:0 14px;padding:16px 14px" id="stats-monthly"></div>
     </div>
 
     <!-- AJUSTES -->
@@ -504,7 +561,13 @@ html,body{height:100%;overflow:hidden;background:var(--bg);font-family:'Barlow',
       <div class="settings-group">
         <div class="sg-header">🌟 Mi objetivo</div>
         <div class="sg-body">
-          <div class="sg-row"><div><div class="sg-title">🎯 Objetivo</div></div><input class="pct-field" id="set-goal-name" style="width:160px;text-align:left;font-family:'Barlow',sans-serif;font-size:12px" placeholder="Ej: Casa propia"/></div>
+          <div class="sg-row">
+            <div><div class="sg-title">🎯 Objetivo</div></div>
+            <div style="display:flex;align-items:center;gap:6px">
+              <input class="pct-field" id="set-goal-emoji" style="width:44px;text-align:center;font-size:18px;padding:5px 4px" placeholder="🎯" maxlength="4"/>
+              <input class="pct-field" id="set-goal-name" style="width:120px;text-align:left;font-family:'Barlow',sans-serif;font-size:12px" placeholder="Ej: Casa propia"/>
+            </div>
+          </div>
           <div class="sg-row"><div><div class="sg-title">💰 Monto objetivo ($)</div></div><input class="pct-field" id="set-goal-amount" style="width:120px" type="number" placeholder="0"/></div>
         </div>
       </div>
@@ -535,7 +598,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);font-family:'Barlow',
           </div>
         </div>
       </div>
-      <div style="padding:0 16px;margin-bottom:8px;display:flex;flex-direction:column;gap:10px">
+      <div style="padding:0 14px;margin-bottom:8px;display:flex;flex-direction:column;gap:10px">
         <button class="btn-full" id="btn-save-settings">💾 Guardar cambios</button>
         <button class="ob-btn-outline" id="btn-redo-ob" style="margin-top:0">🔄 Rehacer configuración inicial</button>
         <button class="btn-outline btn-danger" id="btn-reset">🗑️ Borrar todos los datos</button>
@@ -543,7 +606,6 @@ html,body{height:100%;overflow:hidden;background:var(--bg);font-family:'Barlow',
     </div>
 
   </div>
-  <div class="fab" id="fab">+</div>
   <nav class="bottom-nav">
     <div class="nav-item active" data-page="home"><div class="nav-pill"></div><span class="nav-icon">🏠</span><span class="nav-label">Inicio</span></div>
     <div class="nav-item" data-page="expenses"><div class="nav-pill"></div><span class="nav-icon">🧾</span><span class="nav-label">Gastos</span></div>
@@ -552,6 +614,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);font-family:'Barlow',
     <div class="nav-item" data-page="settings"><div class="nav-pill"></div><span class="nav-icon">⚙️</span><span class="nav-label">Ajustes</span></div>
   </nav>
 </div>
+<div class="fab" id="fab">+</div>
 
 <!-- SHEET: AGREGAR GASTO -->
 <div class="sheet-overlay" id="sheet-overlay"></div>
@@ -575,7 +638,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);font-family:'Barlow',
   <div class="sheet-handle"></div>
   <div class="sheet-title">💰 Editar sueldo</div>
   <div class="sheet-body">
-    <div class="form-group"><label class="form-label">Sueldo mensual ($)</label><input class="form-input" id="salary-field" type="number" placeholder="0" inputmode="numeric" style="font-size:28px;font-family:'JetBrains Mono',monospace;font-weight:800;letter-spacing:-1px"/></div>
+    <div class="form-group"><label class="form-label">Sueldo mensual ($)</label><input class="form-input" id="salary-field" type="number" placeholder="0" inputmode="numeric" style="font-size:26px;font-family:'JetBrains Mono',monospace;font-weight:800;letter-spacing:-1px"/></div>
     <button class="btn-full" id="btn-confirm-salary">💾 Guardar sueldo</button>
   </div>
 </div>
@@ -609,10 +672,17 @@ html,body{height:100%;overflow:hidden;background:var(--bg);font-family:'Barlow',
   <div class="sheet-body" id="editsc-body"></div>
 </div>
 
+<!-- SHEET: DETALLE OBJETIVO -->
+<div class="sheet" id="sheet-goal-detail">
+  <div class="sheet-handle"></div>
+  <div class="sheet-title" id="gd-sheet-title">🎯 Mi Objetivo</div>
+  <div id="goal-detail-content"></div>
+</div>
+
 <div id="toast" class="toast"></div>
 
 <script>
-const SK='andopato_v3';
+const SK='andopato_v4';
 const MES=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
 const SUBCAT_COLORS=['#6C3FE8','#FF6B35','#00C896','#FF3CAC','#FFB800','#4FC3F7','#A855F7','#FF5370','#22C55E','#F97316'];
 const CELEBRATE_MSGS=[
@@ -620,6 +690,13 @@ const CELEBRATE_MSGS=[
   "🏆 ¡Increíble, {name}! Alcanzaste tu meta. El esfuerzo valió cada peso.",
   "🦆 ¡Cuac cuac, {name}! Llegaste a tu objetivo. ¡Ahora a celebrar y a por el siguiente!",
   "✨ ¡{name}, lo hiciste! Tu disciplina financiera es inspiradora. ¡Meta lograda!"
+];
+// Milestone messages at 25%, 50%, 75%, 100%
+const MILESTONE_MSGS=[
+  {pct:25, title:'¡Primer cuarto! 💪', sub:'Ya llevas el 25% de tu objetivo. ¡Sigue así!'},
+  {pct:50, title:'¡A mitad del camino! 🚀', sub:'El 50% logrado. Estás en la recta correcta.'},
+  {pct:75, title:'¡Casi llegás! 🔥', sub:'75% completado. La meta está al alcance de tu mano.'},
+  {pct:100, title:'¡META CUMPLIDA! 🏆', sub:'¡Lo lograste! Tiempo de celebrar y fijarte una nueva meta.'},
 ];
 const DEF_BUCKETS=[
   {id:'fixed',   name:'Gastos Fijos',pct:50,emoji:'🏠',color:'#FF6B35',bg:'var(--c-fixed-bg)',subcats:[{id:'sc1',name:'Arriendo',emoji:'🏠',goal:0},{id:'sc2',name:'Comida',emoji:'🛒',goal:0},{id:'sc3',name:'Servicios',emoji:'💡',goal:0}]},
@@ -634,9 +711,16 @@ function fmt(n){return'$'+Math.round(n).toLocaleString('es-CL')}
 function fmtS(n){if(n>=1000000)return'$'+(n/1000000).toFixed(1)+'M';if(n>=1000)return'$'+(n/1000).toFixed(0)+'K';return fmt(n)}
 function daysLeft(){const n=new Date();return new Date(n.getFullYear(),n.getMonth()+1,0).getDate()-n.getDate()}
 function uid(){return'sc'+Date.now()+Math.random().toString(36).slice(2,6)}
+// Extract emoji from goal name or return fallback
+function goalEmoji(){
+  if(S.goal?.emoji)return S.goal.emoji;
+  const n=S.goal?.name||'';
+  const m=n.match(/^(\p{Emoji})/u);
+  return m?m[1]:'🎯';
+}
 
-function defState(){return{salary:0,buckets:JSON.parse(JSON.stringify(DEF_BUCKETS)),expenses:{},incomes:{},closed:{},alertPct:80,name:'',theme:'light',currentMonth:mkMK(),goal:{name:'',amount:0},onboarded:false};}
-function loadState(){try{const r=localStorage.getItem(SK);if(r)return JSON.parse(r)}catch(e){}return defState();}
+function defState(){return{salary:0,buckets:JSON.parse(JSON.stringify(DEF_BUCKETS)),expenses:{},incomes:{},closed:{},alertPct:80,name:'',theme:'light',currentMonth:mkMK(),goal:{name:'',amount:0,emoji:''},onboarded:false,shownMilestones:[]};}
+function loadState(){try{const r=localStorage.getItem(SK);if(r){const p=JSON.parse(r);if(!p.shownMilestones)p.shownMilestones=[];if(!p.goal)p.goal={name:'',amount:0,emoji:''};if(!p.goal.emoji)p.goal.emoji='';return p;}}catch(e){}return defState();}
 function save(){try{localStorage.setItem(SK,JSON.stringify(S))}catch(e){}}
 let S=loadState();
 let selCat=S.buckets[0]?.id||'fixed';
@@ -676,6 +760,7 @@ function openSheet(id){
   if(id==='sheet-add'){buildCatGrid();setTimeout(()=>document.getElementById('add-desc').focus(),300);}
   if(id==='sheet-salary'){document.getElementById('salary-field').value=S.salary||'';setTimeout(()=>document.getElementById('salary-field').focus(),300);}
   if(id==='sheet-income'){renderIncomePreview();}
+  if(id==='sheet-goal-detail'){renderGoalDetailSheet();}
 }
 function closeSheet(){
   if(!curSheet)return;
@@ -685,7 +770,32 @@ function closeSheet(){
 }
 document.getElementById('sheet-overlay').addEventListener('click',closeSheet);
 document.getElementById('fab').addEventListener('click',()=>openSheet('sheet-add'));
-document.getElementById('salary-hero').addEventListener('click',()=>openSheet('sheet-salary'));
+
+// ── MILESTONE BANNER ──
+let milestoneBannerTimer=null;
+function showMilestoneBanner(ms, emoji){
+  const banner=document.getElementById('milestone-banner');
+  document.getElementById('mb-emoji').textContent=emoji||'🎉';
+  document.getElementById('mb-title').textContent=ms.title;
+  document.getElementById('mb-sub').textContent=ms.sub;
+  banner.classList.add('show');
+  if(milestoneBannerTimer)clearTimeout(milestoneBannerTimer);
+  milestoneBannerTimer=setTimeout(closeMilestoneBanner,5000);
+}
+function closeMilestoneBanner(){
+  document.getElementById('milestone-banner').classList.remove('show');
+}
+function checkMilestones(pctNum){
+  if(!S.goal||!S.goal.amount||S.goal.amount<=0)return;
+  if(!S.shownMilestones)S.shownMilestones=[];
+  const emoji=goalEmoji();
+  MILESTONE_MSGS.forEach(ms=>{
+    if(pctNum>=ms.pct&&!S.shownMilestones.includes(ms.pct)){
+      S.shownMilestones.push(ms.pct);save();
+      setTimeout(()=>showMilestoneBanner(ms,emoji),600);
+    }
+  });
+}
 
 // ── CAT GRID ──
 function buildCatGrid(){
@@ -801,7 +911,6 @@ function spentBySub(bid,mk=S.currentMonth){
   return t;
 }
 function blim(b){return S.salary*b.pct/100;}
-// Total available = salary + extra incomes
 function totalAvailable(mk=S.currentMonth){return S.salary+totalExtraIncome(mk);}
 
 // ── ALERTS ──
@@ -829,12 +938,83 @@ function checkAlerts(){
   else if(!hasAlert&&dot)dot.remove();
 }
 
+// ── GOAL DETAIL SHEET ──
+function renderGoalDetailSheet(){
+  const goal=S.goal;
+  const emoji=goalEmoji();
+  if(!goal||!goal.name||goal.amount<=0){
+    document.getElementById('goal-detail-content').innerHTML='<div class="gml-empty" style="padding:32px 20px">No hay objetivo configurado.<br><br><a onclick="gotoPage(\'settings\');closeSheet()" style="color:var(--accent);font-weight:800;cursor:pointer">Configurar objetivo →</a></div>';
+    return;
+  }
+  let accSav=0;
+  const monthlyBreakdown=[];
+  Object.entries(S.closed||{}).sort((a,b)=>a[0].localeCompare(b[0])).forEach(([mk,c])=>{
+    const savAmt=c.sav||0;
+    accSav+=savAmt;
+    monthlyBreakdown.push({mk,sav:savAmt,cumulative:accSav});
+  });
+  const pct=Math.min(goal.amount>0?accSav/goal.amount:0,1);
+  const pctNum=Math.round(pct*100);
+  const remaining=Math.max(0,goal.amount-accSav);
+  document.getElementById('gd-sheet-title').textContent=`${emoji} Mi Objetivo`;
+
+  // Milestones
+  const milestonesHTML=`
+    <div class="goal-milestone-list">
+      <div class="gml-title" style="margin-bottom:10px">HITOS DEL CAMINO</div>
+      ${[25,50,75,100].map(m=>{
+        const reached=pctNum>=m;
+        const mi=MILESTONE_MSGS.find(x=>x.pct===m);
+        const mEmoji=m===25?'🌱':m===50?'🚀':m===75?'🔥':'🏆';
+        return`<div class="milestone-item ${reached?'mi-reached':'mi-pending'}">
+          <div class="mi-emoji" style="${reached?'animation:emojiBounce .8s ease infinite alternate':''}">${mEmoji}</div>
+          <div class="mi-label">${mi.title.replace(/[🌱🚀🔥🏆💪]/g,'').trim()}</div>
+          ${reached?`<div class="mi-badge-reached">✓ ${m}%</div>`:`<div class="mi-badge-pending">${m}%</div>`}
+        </div>`;
+      }).join('')}
+    </div>`;
+
+  // Monthly breakdown
+  const hasMonths=monthlyBreakdown.length>0;
+  const monthlyHTML=`
+    <div class="goal-monthly-list" style="margin-top:16px">
+      <div class="gml-title">AHORROS POR MES</div>
+      ${hasMonths?monthlyBreakdown.filter(x=>x.sav>0).reverse().map(x=>`
+        <div class="gml-item">
+          <div class="gml-month">📅 ${mlabel(x.mk)}</div>
+          <div style="text-align:right">
+            <div class="gml-amount">+${fmtS(x.sav)}</div>
+            <div style="font-size:11px;color:var(--txt3);font-weight:600">Acum: ${fmtS(x.cumulative)}</div>
+          </div>
+        </div>`).join(''):`<div class="gml-empty">Aún no hay meses cerrados.<br>Cierra tu primer mes en Ajustes para ver el progreso real.</div>`}
+    </div>`;
+
+  document.getElementById('goal-detail-content').innerHTML=`
+    <div class="goal-detail-header">
+      <div class="gdh-emoji">${emoji}</div>
+      <div class="gdh-name">${goal.name.replace(/^\p{Emoji}\s*/u,'')}</div>
+      <div class="gdh-pct">${pctNum}%</div>
+      <div style="font-size:13px;color:var(--txt3);font-weight:700">completado</div>
+    </div>
+    <div class="gdh-bar-wrap"><div class="gdh-bar-fill" id="gdh-fill" style="width:0%"></div></div>
+    <div class="gdh-amounts">
+      <div class="gdh-saved">${fmtS(accSav)} ahorrado</div>
+      <div class="gdh-remaining">${pct>=1?'¡Meta alcanzada! 🎯':'Falta '+fmtS(remaining)}</div>
+    </div>
+    ${milestonesHTML}
+    ${monthlyHTML}
+    <div style="padding:16px 20px 0">
+      <button class="btn-full" onclick="closeSheet();gotoPage('settings')" style="background:var(--bg3);color:var(--txt);border:1.5px solid var(--border2);font-size:15px">⚙️ Editar objetivo</button>
+    </div>`;
+  // Animate bar
+  setTimeout(()=>{const f=document.getElementById('gdh-fill');if(f)f.style.width=pctNum+'%';},100);
+}
+
 // ── GOAL CARD ──
 function renderGoalCard(){
   const wrap=document.getElementById('goal-card-wrap');
   const goal=S.goal;
   if(!goal||!goal.name||goal.amount<=0){wrap.innerHTML='';return;}
-  // Only count savings actually saved in CLOSED months (real money set aside)
   let accSav=0;
   Object.values(S.closed||{}).forEach(c=>accSav+=c.sav||0);
   const pct=Math.min(accSav/goal.amount,1);
@@ -842,16 +1022,18 @@ function renderGoalCard(){
   const remaining=Math.max(0,goal.amount-accSav);
   const celebrated=pct>=1;
   const celebMsg=celebrated?CELEBRATE_MSGS[Math.floor(Math.random()*CELEBRATE_MSGS.length)].replace('{name}',S.name||'campeón'):'';
-  // Estimate months to goal based on average monthly savings
   const monthsClosed=Object.keys(S.closed||{}).length;
   const avgMonthlySav=monthsClosed>0?accSav/monthsClosed:0;
   const savB=S.buckets.find(b=>b.id==='savings');
   const projectedMonthly=avgMonthlySav>0?avgMonthlySav:(savB?blim(savB):0);
   const monthsLeft=projectedMonthly>0?Math.ceil(remaining/projectedMonthly):null;
+  const emoji=goalEmoji();
+  // Check milestones
+  checkMilestones(pctNum);
   wrap.innerHTML=`
-    <div class="goal-card anim" style="${celebrated?'border-color:var(--green)':''}">
+    <div class="goal-card anim" onclick="openGoalDetail()" style="${celebrated?'border-color:var(--green)':''}">
       <div class="goal-top">
-        <div class="goal-title">${goal.name}</div>
+        <div class="goal-title"><span style="font-size:20px;animation:emojiBounce .9s ease infinite alternate;display:inline-block">${emoji}</span> ${(goal.name||'').replace(/^\p{Emoji}\s*/u,'')}</div>
         <div class="goal-pct-badge" style="${celebrated?'background:var(--green-bg);color:#007A5A':''}">${pctNum}%</div>
       </div>
       <div class="goal-bar-wrap"><div class="goal-bar-fill" style="width:${pctNum}%;${celebrated?'background:linear-gradient(90deg,#00C896,#00A67E)':''}"></div></div>
@@ -862,7 +1044,11 @@ function renderGoalCard(){
       ${!celebrated&&monthsLeft?`<div style="font-size:12px;color:var(--txt3);font-weight:700;margin-top:6px">📅 Estimado: ~${monthsLeft} ${monthsLeft===1?'mes':'meses'} para lograrlo</div>`:''}
       ${accSav===0?`<div style="font-size:12px;color:var(--txt3);font-weight:700;margin-top:6px">💡 Cierra tu primer mes para ver el progreso real</div>`:''}
       ${celebrated?`<div class="goal-celebrate"><span style="font-size:28px">🏆</span><p>${celebMsg}</p></div>`:''}
+      <div class="goal-tap-hint">Toca para ver detalles y progreso →</div>
     </div>`;
+}
+function openGoalDetail(){
+  openSheet('sheet-goal-detail');
 }
 
 // ── INCOME STRIP ──
@@ -871,7 +1057,7 @@ function renderIncomeStrip(){
   const wrap=document.getElementById('income-strip-wrap');
   if(list.length===0){wrap.innerHTML='';return;}
   const total=totalExtraIncome();
-  wrap.innerHTML=`<div style="padding:10px 16px 0;display:flex;gap:8px;flex-wrap:wrap">
+  wrap.innerHTML=`<div style="padding:8px 14px 0;display:flex;gap:8px;flex-wrap:wrap">
     ${list.map(inc=>`<div class="income-chip">💵 ${inc.desc}: +${fmtS(inc.amt)}</div>`).join('')}
     <div class="income-chip" style="background:var(--accent-l);color:var(--accent);border-color:var(--border2)">Total extra: +${fmtS(total)}</div>
   </div>`;
@@ -883,17 +1069,17 @@ function renderHome(){
   document.getElementById('hero-month').textContent=(S.name?S.name+' · ':'')+mlabel(mk);
   const s=spent();
   const totalSpent=Object.values(s).reduce((a,b)=>a+b,0);
-  const avail=totalAvailable(mk); // salary + extra incomes
+  const avail=totalAvailable(mk);
   const remaining=avail-totalSpent;
   document.getElementById('hero-salary').textContent=fmt(Math.max(0,remaining));
   document.getElementById('hero-sub-label').textContent=remaining<-0.5?'⛔ presupuesto excedido':'💰 disponible este mes';
   const ratio=avail>0?Math.min(totalSpent/avail,1):0;
   const pct=Math.round(ratio*100);
-  const C=2*Math.PI*68;
+  const C=2*Math.PI*63;
   document.getElementById('ring-fill').style.strokeDashoffset=C*(1-ratio);
+  document.getElementById('ring-fill').setAttribute('stroke-dasharray',String(C));
   document.getElementById('ring-spent').textContent=fmtS(totalSpent);
   document.getElementById('ring-pct').textContent=pct+'%';
-  // Dynamic color
   let ringColor;
   if(totalSpent>avail)      ringColor='#FF2D55';
   else if(pct>=90)          ringColor='#FF4560';
@@ -957,7 +1143,7 @@ function openBucketDetail(bid){
   const subcatRowsHTML=subcatsSorted.length>0?`<div style="background:var(--bg2);border:1.5px solid var(--border);border-radius:var(--r2);overflow:hidden;margin-bottom:14px">${subcatsSorted.map((sc,i)=>{const us2=subSpent2[sc.id]||0;const gp=sc.goal>0?Math.min(us2/sc.goal,1):0;const color=SUBCAT_COLORS[i%SUBCAT_COLORS.length];return`<div class="subcat-row"><div class="subcat-left"><div class="subcat-emoji">${sc.emoji||'📁'}</div><div><div class="subcat-name">${sc.name}</div>${sc.goal>0?`<div class="subcat-spent">Meta: ${fmt(sc.goal)}</div>`:''}${sc.goal>0?`<div class="subcat-bar" style="width:90px"><div class="subcat-fill" style="width:${Math.round(gp*100)}%;background:${color}"></div></div>`:''}</div></div><div class="subcat-right"><div class="subcat-amt" style="color:${color}">${fmt(us2)}</div>${sc.goal>0?`<div class="subcat-goal">${Math.round(gp*100)}%</div>`:''}</div></div>`;}).join('')}</div>`:'';
   document.getElementById('detail-body').innerHTML=`
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
-      <div><div style="font-size:28px;font-family:'JetBrains Mono',monospace;font-weight:800;color:${b.color}">${fmt(us)}</div>
+      <div><div style="font-size:26px;font-family:'JetBrains Mono',monospace;font-weight:800;color:${b.color}">${fmt(us)}</div>
       <div style="font-size:12px;color:var(--txt3);font-weight:700">de ${fmt(lim)} · ${us>lim?'⛔ superado':fmt(lim-us)+' disponibles'}</div></div>
       <button class="btn-sm" onclick="openEditSubcats('${bid}')">✏️ Subcats</button>
     </div>
@@ -976,7 +1162,7 @@ function renderEditSubcats(bid){
   const b=S.buckets.find(bk=>bk.id===bid);if(!b)return;
   const body=document.getElementById('editsc-body');
   body.innerHTML=`<div style="background:var(--bg2);border:1.5px solid var(--border);border-radius:var(--r2);overflow:hidden;margin-bottom:14px">
-    ${(b.subcats||[]).map(sc=>`<div style="display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid var(--border)">
+    ${(b.subcats||[]).map(sc=>`<div style="display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid var(--border)">
       <span style="font-size:20px">${sc.emoji||'📁'}</span>
       <div style="flex:1"><input value="${sc.name}" data-id="${sc.id}" data-field="name" class="sc-edit-input" style="background:transparent;border:none;font-size:14px;font-weight:800;color:var(--txt);width:100%;outline:none;font-family:'Barlow',sans-serif"/>
       <div style="display:flex;align-items:center;gap:6px;margin-top:4px"><span style="font-size:11px;color:var(--txt3);font-weight:700">Meta:</span>
@@ -985,7 +1171,7 @@ function renderEditSubcats(bid){
     </div>`).join('')}
   </div>
   <div style="display:flex;gap:8px;margin-bottom:12px">
-    <input class="form-input" id="new-sc-emoji" placeholder="🆕" style="width:60px;text-align:center;padding:10px 6px"/>
+    <input class="form-input" id="new-sc-emoji" placeholder="🆕" style="width:58px;text-align:center;padding:10px 6px"/>
     <input class="form-input" id="new-sc-name" placeholder="Nombre subcategoría" style="flex:1"/>
   </div>
   <button class="btn-full" onclick="addSubcat('${bid}')" style="margin-bottom:10px">+ Agregar</button>
@@ -1020,7 +1206,7 @@ function renderExpenses(){
   const el=exps().slice().reverse();
   const c=document.getElementById('all-expenses-list');
   if(el.length===0){c.innerHTML='<div class="empty-state"><span class="es-emoji">🧾</span><p>Sin gastos este mes</p></div>';return;}
-  c.innerHTML='<div class="exp-list" style="margin:0 16px">'+el.map((e,i)=>{
+  c.innerHTML='<div class="exp-list" style="margin:0 14px">'+el.map((e,i)=>{
     const ri=el.length-1-i;
     const b=S.buckets.find(bk=>bk.id===e.bid)||{emoji:'💸',color:'#888',bg:'rgba(128,128,128,.15)',name:'—'};
     const sc=b.subcats?.find(s=>s.id===e.sid);
@@ -1086,12 +1272,12 @@ function renderStats(){
     const grand=allSl.reduce((s,sl)=>s+sl.val,0)||1;
     const R=38,cxy=48,circ=2*Math.PI*R;let off2=0;
     const paths=allSl.map(sl=>{const frac=sl.val/grand;const dash=frac*circ;const p=`<circle cx="${cxy}" cy="${cxy}" r="${R}" fill="none" stroke="${sl.color}" stroke-width="14" stroke-dasharray="${dash} ${circ-dash}" stroke-dashoffset="${-off2*circ}"/>`;off2+=frac;return p;}).join('');
-    return`<div style="background:var(--bg2);border:1.5px solid var(--border);border-radius:var(--r2);margin:0 16px 10px;overflow:hidden">
-      <div style="padding:12px 16px 6px;display:flex;align-items:center;justify-content:space-between">
+    return`<div style="background:var(--bg2);border:1.5px solid var(--border);border-radius:var(--r2);margin:0 14px 10px;overflow:hidden">
+      <div style="padding:12px 14px 6px;display:flex;align-items:center;justify-content:space-between">
         <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:16px">${b.emoji} ${b.name}</div>
         <div style="font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:800;color:${b.color}">${fmt(us)}</div>
       </div>
-      ${us>0?`<div class="donut-wrap" style="padding:10px 16px 14px"><svg width="96" height="96" viewBox="0 0 96 96" style="transform:rotate(-90deg);flex-shrink:0"><circle cx="${cxy}" cy="${cxy}" r="${R}" fill="none" stroke="var(--bg3)" stroke-width="14"/>${paths}</svg><div class="donut-legend">${allSl.filter(sl=>sl.val>0).map(sl=>`<div class="legend-row"><div class="legend-dot" style="background:${sl.color}"></div><span>${sl.emoji} ${sl.label}</span><span class="legend-val">${fmtS(sl.val)}</span></div>`).join('')||'<div style="font-size:12px;color:var(--txt3)">Sin subcat.</div>'}</div></div>`:`<div style="padding:12px 16px;font-size:13px;color:var(--txt3);font-weight:700">Sin gastos registrados</div>`}
+      ${us>0?`<div class="donut-wrap" style="padding:10px 14px 14px"><svg width="96" height="96" viewBox="0 0 96 96" style="transform:rotate(-90deg);flex-shrink:0"><circle cx="${cxy}" cy="${cxy}" r="${R}" fill="none" stroke="var(--bg3)" stroke-width="14"/>${paths}</svg><div class="donut-legend">${allSl.filter(sl=>sl.val>0).map(sl=>`<div class="legend-row"><div class="legend-dot" style="background:${sl.color}"></div><span>${sl.emoji} ${sl.label}</span><span class="legend-val">${fmtS(sl.val)}</span></div>`).join('')||'<div style="font-size:12px;color:var(--txt3)">Sin subcat.</div>'}</div></div>`:`<div style="padding:12px 14px;font-size:13px;color:var(--txt3);font-weight:700">Sin gastos registrados</div>`}
     </div>`;
   }).join('');
   const closedMks=Object.keys(S.closed).sort().slice(-4);
@@ -1108,6 +1294,7 @@ function renderSettings(){
   document.getElementById('set-name').value=S.name||'';
   document.getElementById('set-salary').value=S.salary||'';
   document.getElementById('set-alert').value=S.alertPct||80;
+  document.getElementById('set-goal-emoji').value=S.goal?.emoji||'';
   document.getElementById('set-goal-name').value=S.goal?.name||'';
   document.getElementById('set-goal-amount').value=S.goal?.amount||'';
   const sb=document.getElementById('set-buckets');
@@ -1128,7 +1315,14 @@ document.getElementById('btn-save-settings').addEventListener('click',()=>{
   S.salary=parseFloat(document.getElementById('set-salary').value)||S.salary;
   S.alertPct=parseInt(document.getElementById('set-alert').value)||80;
   if(!S.goal)S.goal={};
-  S.goal.name=document.getElementById('set-goal-name').value.trim();
+  const newGoalName=document.getElementById('set-goal-name').value.trim();
+  const newGoalEmoji=document.getElementById('set-goal-emoji').value.trim();
+  // If goal name changed, reset milestones
+  if(newGoalName!==S.goal.name||parseFloat(document.getElementById('set-goal-amount').value)!==S.goal.amount){
+    S.shownMilestones=[];
+  }
+  S.goal.name=newGoalName;
+  S.goal.emoji=newGoalEmoji;
   S.goal.amount=parseFloat(document.getElementById('set-goal-amount').value)||0;
   document.querySelectorAll('.bpct').forEach(i=>{const b=S.buckets.find(bk=>bk.id===i.dataset.id);if(b)b.pct=parseInt(i.value)||0;});
   save();renderHome();renderSettings();toast('✅ Cambios guardados');
@@ -1147,20 +1341,22 @@ document.getElementById('btn-reset').addEventListener('click',()=>{
 });
 
 // ── ONBOARDING ──
-const OB_TOTAL=5;let obStep=0;let obGoalSel='';
+const OB_TOTAL=5;let obStep=0;let obGoalSel='';let obGoalEmojiSel='';
 function initOnboarding(){
   document.getElementById('onboarding').classList.remove('hidden');
   document.getElementById('app').style.display='none';
   renderObProgress();
-  // goal options
   document.querySelectorAll('.ob-goal-opt').forEach(el=>{
     el.addEventListener('click',()=>{
       obGoalSel=el.dataset.goal;
+      obGoalEmojiSel=el.dataset.emoji||'';
       document.querySelectorAll('.ob-goal-opt').forEach(o=>o.classList.remove('sel'));
       el.classList.add('sel');
+      // Pre-fill emoji input if custom was blank
+      const emojiInp=document.getElementById('ob-goal-emoji');
+      if(!emojiInp.value)emojiInp.value=obGoalEmojiSel;
     });
   });
-  // pct inputs
   ['ob-fixed','ob-sav','ob-lei','ob-emg'].forEach(id=>{
     document.getElementById(id).addEventListener('input',updateObPctSum);
   });
@@ -1178,7 +1374,6 @@ function updateObPctSum(){
   el.className='ob-pct-sum '+(sum===100?'ob-pct-ok':'ob-pct-bad');
 }
 function obNext(){
-  // Validate
   if(obStep===0&&!document.getElementById('ob-name').value.trim()){toast('⚠️ Escribe tu nombre');return;}
   if(obStep===1&&!(parseFloat(document.getElementById('ob-salary').value)>0)){toast('⚠️ Ingresa tu sueldo');return;}
   if(obStep===2){
@@ -1212,10 +1407,14 @@ function finishOnboarding(){
     if(b.id==='leisure')b.pct=pcts.leisure;
     if(b.id==='emerg')b.pct=pcts.emerg;
   });
-  const goalName=document.getElementById('ob-goal-custom').value.trim()||obGoalSel||'';
+  const customName=document.getElementById('ob-goal-custom').value.trim();
+  const customEmoji=document.getElementById('ob-goal-emoji').value.trim();
+  const goalName=customName||obGoalSel||'';
+  const goalEmoji2=customEmoji||obGoalEmojiSel||'🎯';
   const goalAmt=parseFloat(document.getElementById('ob-goal-amount').value)||0;
-  S.goal={name:goalName,amount:goalAmt};
+  S.goal={name:goalName,amount:goalAmt,emoji:goalEmoji2};
   S.onboarded=true;
+  S.shownMilestones=[];
   save();
   document.getElementById('onboarding').classList.add('hidden');
   document.getElementById('app').style.display='flex';
@@ -1225,7 +1424,7 @@ function finishOnboarding(){
 document.getElementById('ob-next').addEventListener('click',obNext);
 document.getElementById('ob-skip').addEventListener('click',obSkip);
 document.getElementById('ob-skip').style.display='none';
-document.getElementById('btn-redo-ob').addEventListener('click',()=>{obStep=0;obGoalSel='';document.querySelectorAll('.ob-step').forEach((el,i)=>{el.classList.toggle('active',i===0);});initOnboarding();});
+document.getElementById('btn-redo-ob').addEventListener('click',()=>{obStep=0;obGoalSel='';obGoalEmojiSel='';document.querySelectorAll('.ob-step').forEach((el,i)=>{el.classList.toggle('active',i===0);});initOnboarding();});
 
 // ── INIT ──
 renderHome();
